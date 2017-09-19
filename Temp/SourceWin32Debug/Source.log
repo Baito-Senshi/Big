@@ -1,1 +1,6 @@
-﻿
+﻿  Source.cpp
+c:\users\maes-deux\desktop\github\big\source\source\source\source.cpp(16): warning C4005: 'GCC_ERROR': macro redefinition
+  c:\users\maes-deux\desktop\github\big\source\source\source\source.cpp(15): note: see previous definition of 'GCC_ERROR'
+c:\users\maes-deux\desktop\github\big\source\source\source\source.cpp(78): warning C4244: 'initializing': conversion from 'const DWORDLONG' to 'unsigned int', possible loss of data
+  Source.vcxproj -> C:\Users\Maes-Deux\Desktop\GitHub\Big\Source\Source\..\..\Lib\Win32Debug\Source&(PlatformName)Debug.exe
+  Source.vcxproj -> C:\Users\Maes-Deux\Desktop\GitHub\Big\Source\Source\..\..\Lib\Win32Debug\Source&(PlatformName)Debug.pdb (Partial PDB)
