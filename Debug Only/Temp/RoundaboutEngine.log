@@ -1,0 +1,2 @@
+﻿RoundaboutEngine.obj : error LNK2001: unresolved external symbol "private: static enum RoundaboutEngine::GameState RoundaboutEngine::_gameState" (?_gameState@RoundaboutEngine@@0W4GameState@1@A)
+C:\Users\101045221\Desktop\Debug Only\Source\RoundaboutEngine\RoundaboutEngine.vcxproj\..\..\..\Game\Debug-Win32\RoundaboutEngine.exe : fatal error LNK1120: 1 unresolved externals
