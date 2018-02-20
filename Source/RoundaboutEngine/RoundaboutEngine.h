@@ -4,14 +4,12 @@
 class RoundaboutEngine
 {
 public:
-	RoundaboutEngine();
-	static void Start();
-	static void Initialize();
+	void Start();
+	void Initialize();
+	void GameLoop();
+	bool IsExiting();
 
-	static void GameLoop();
-	static bool IsExiting();
-
-	static sf::RenderWindow _mainWindow;
+	sf::RenderWindow _mainWindow;
 
 	enum GameState {
 		Uninitialized,
@@ -22,8 +20,11 @@ public:
 		Paused,
 		Exiting
 	};
-	static GameState _gameState;
+
+	GameState _gameState;
 
 private:
+
+
 };
 

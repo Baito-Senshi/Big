@@ -1,3 +1,5 @@
+#include "SFML/Window.hpp"
+#include "SFML/Graphics.hpp"
 #include "RoundaboutEngine.h"
 
 void RoundaboutEngine::Start(void)
@@ -30,14 +32,13 @@ void RoundaboutEngine::Initialize(void)
 {
 	_gameState = Uninitialized;
 	// check for memory
-	//check for hd
-	//check for processor 
+	// check for hd
+	// check for processor 
 	// if passed change game state to initialized otherwise change to uninti
 
 	//_gameState = Initialized;
 	return;
 }
-
 
 bool RoundaboutEngine::IsExiting()
 {

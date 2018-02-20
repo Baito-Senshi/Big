@@ -1,4 +1,5 @@
-#include <SFML/Graphics.hpp>
+#include "SFML/Window.hpp"
+#include "SFML/Graphics.hpp"
 #include "RoundaboutEngine.h"
 #include "SplashScreen.h"
 
@@ -9,16 +10,16 @@ int main()
 	sc.Show(engine._mainWindow);
 	engine.Initialize();
 	engine.Start();
-	//sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	//sf::CircleShape shape(100.f);
-	//shape.setFillColor(sf::Color::Green);
+	//sf::renderwindow window(sf::videomode(200, 200), "sfml works!");
+	//sf::circleshape shape(100.f);
+	//shape.setfillcolor(sf::color::green);
 
-	//while (window.isOpen())
+	//while (window.isopen())
 	//{
-	//	sf::Event event;
-	//	while (window.pollEvent(event))
+	//	sf::event event;
+	//	while (window.pollevent(event))
 	//	{
-	//		if (event.type == sf::Event::Closed)
+	//		if (event.type == sf::event::closed)
 	//			window.close();
 	//	}
 

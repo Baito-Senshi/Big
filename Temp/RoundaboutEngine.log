@@ -1,17 +1,3 @@
-﻿  main.cpp
-c:\users\tech\documents\github\big\source\roundaboutengine\roundaboutengine.h(4): error C2011: 'RoundaboutEngine': 'class' type redefinition
-  c:\users\tech\documents\github\big\source\roundaboutengine\roundaboutengine.h(4): note: see declaration of 'RoundaboutEngine'
-c:\users\tech\documents\github\big\source\roundaboutengine\main.cpp(7): error C2079: 'engine' uses undefined class 'RoundaboutEngine'
-c:\users\tech\documents\github\big\source\roundaboutengine\main.cpp(9): error C2228: left of '._mainWindow' must have class/struct/union
-  c:\users\tech\documents\github\big\source\roundaboutengine\main.cpp(9): note: type is 'int'
-c:\users\tech\documents\github\big\source\roundaboutengine\main.cpp(10): error C2228: left of '.Initialize' must have class/struct/union
-  c:\users\tech\documents\github\big\source\roundaboutengine\main.cpp(10): note: type is 'int'
-c:\users\tech\documents\github\big\source\roundaboutengine\main.cpp(11): error C2228: left of '.Start' must have class/struct/union
-  c:\users\tech\documents\github\big\source\roundaboutengine\main.cpp(11): note: type is 'int'
-  Generating Code...
-  Compiling...
-  RoundaboutEngine.cpp
-  Generating Code...
-  Compiling...
-  SplashScreen.cpp
-  Generating Code...
+﻿  SplashScreen.cpp
+  RoundaboutEngine.vcxproj -> C:\Users\Tech\Documents\GitHub\Big\Source\RoundaboutEngine\RoundaboutEngine.vcxproj\..\..\..\Game\Debug-Win32\RoundaboutEngine.exe
+  RoundaboutEngine.vcxproj -> C:\Users\Tech\Documents\GitHub\Big\Source\RoundaboutEngine\RoundaboutEngine.vcxproj\..\..\..\Game\Debug-Win32\RoundaboutEngine.pdb (Partial PDB)
