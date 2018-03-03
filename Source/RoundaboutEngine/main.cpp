@@ -6,8 +6,7 @@
 int main()
 {
 	RoundaboutEngine engine;
-	SplashScreen sc;
-	sc.Show(engine._mainWindow);
+
 	engine.Initialize();
 	engine.Start();
 	//sf::renderwindow window(sf::videomode(200, 200), "sfml works!");
