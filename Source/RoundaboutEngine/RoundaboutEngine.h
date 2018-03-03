@@ -1,16 +1,6 @@
-#include "SFML/Window.hpp"
-#include "SFML/Graphics.hpp"
-
 class RoundaboutEngine
 {
-public:
-	void Start();
-	void Initialize();
-	void GameLoop();
-	bool IsExiting();
-
-	sf::RenderWindow _mainWindow;
-
+protected:
 	enum GameState {
 		Uninitialized,
 		Initialized,
@@ -23,8 +13,19 @@ public:
 
 	GameState _gameState;
 
-private:
+public:
+	sf::RenderWindow _mainWindow;
 
+	bool IsExiting();
+	void Start();
+	void Initialize();
+	void GameLoop();
 
+	typedef unsigned __int64 DWORDLONG;
+	typedef unsigned long DWORD;
+
+	bool CheckStorage(DWORDLONG diskSpaceNeeded);
+	DWORD ReadCPUSpeed();
+	bool CheckMemory(DWORDLONG physicalRAMNeeded, DWORDLONG virtualRAMNeeded);
 };
 
