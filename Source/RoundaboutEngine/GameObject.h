@@ -1,3 +1,4 @@
+#include <SFML\Graphics.hpp>
 
 class GameObject {
 	GameObject() { Parent = NULL; }

@@ -1,5 +1,5 @@
 #include "BaseComponent.h"
-
+#include <vector>
 BaseComponent::BaseComponent()
 {
 
@@ -15,14 +15,17 @@ BaseComponent::~BaseComponent()
 	delete this;
 }
 
-BaseComponent* BaseComponent::GetComponent() {
+BaseComponent* BaseComponent::GetComponent() 
+{
 	return this;
 }
 
-void BaseComponent::AddComponent(GameObject* host) {
-
+void BaseComponent::AddComponent(BaseComponent host) 
+{
+	comp.push_back(comp);
 }
 
-void BaseComponent::RemoveComponent() {
-
+void BaseComponent::RemoveComponent()
+{
+	comp.pop_back();
 }

@@ -12,7 +12,7 @@ class TransformComponent : BaseComponent  {
 	sf::Transform GetTransform();
 	sf::Transform GetWorldTransform();
 
-	virtual void AddComponent(GameObject* comp) override {
+	virtual void AddComponent(GameObject* comp) {
 		
 	}
 	virtual void RemoveComponent() override;
