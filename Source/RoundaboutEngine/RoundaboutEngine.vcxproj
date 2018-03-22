@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -23,15 +23,17 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RoundaboutEngine.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
-    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="RoundaboutEngine.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="SplashScreen.h" />
-    <ClInclude Include="Transform.h" />
+    <ClInclude Include="TransformComponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

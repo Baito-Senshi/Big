@@ -1,24 +1,24 @@
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
-#include "SplashScreen.h"
 #include "direct.h"
-#include "RoundaboutEngine.h"
 #include "windows.h"
+#include "RoundaboutEngine.h"
+#include "SplashScreen.h"
+#include "Scene.h"
+#include "GameObject.h"
+
+
 #include <iostream>
 
 void RoundaboutEngine::Start(void)
 {
-	//If gamestate is not Uninitialized change it to Initialized
 	if (_gameState != Uninitialized)
 	{
 		_gameState = Initialized;
-		return;
 	}
 
-	//Draw window and change gamestate to Playing
-	//_mainWindow.create(sf::VideoMode(1024, 768, 32), "Roundabout Engine");
-	//sf::RenderWindow window(sf::VideoMode(1024, 768, 32), "Roundabout Engine");
-	_gameState = ShowingSplash;
+	Scene MainScene;
+	MainScene.AddChild();
 
 	while (_gameState)
 	{
@@ -36,33 +36,25 @@ void RoundaboutEngine::Start(void)
 void RoundaboutEngine::Initialize(void)
 {
 	_gameState = Uninitialized;
-
 	_mainWindow.create(sf::VideoMode(1024, 768, 32), "Roundabout Engine");
 
-	SplashScreen sc;
-	sc.Show(_mainWindow);
+	SplashScreen Splash;
+	Splash.Show(_mainWindow);
+
+	_gameState = ShowingSplash;
 
 	if (!CheckStorage(800000000) || 
 		!ReadCPUSpeed() ||
-		!CheckMemory(800000000, 800000000)) { return; }
+		!CheckMemory(800000000, 800000000))
+	{
+		_gameState = Uninitialized; 
+		return;
+	}
 	else
 	{
-		_gameState = ShowingSplash;
+		_gameState = Initialized;
+		return;
 	}
-
-	while (_gameState != Initialized) {
-		sf::Event event;
-		while (_mainWindow.pollEvent(event)) {
-			if (event.type == sf::Event::EventType::KeyPressed
-				|| event.type == sf::Event::EventType::MouseButtonPressed
-				|| event.type == sf::Event::EventType::Closed)
-			{
-				return;
-			}
-		}
-
-	}
-	return;
 }
 
 bool RoundaboutEngine::IsExiting()
@@ -122,4 +114,5 @@ bool RoundaboutEngine::CheckMemory(DWORDLONG physicalRAMNeeded, DWORDLONG virtua
 		std::cout << "CheckMemory Failure: Not enough virtual memory." << std::endl;
 		return false;
 	}
+	else { return true; }
 }
