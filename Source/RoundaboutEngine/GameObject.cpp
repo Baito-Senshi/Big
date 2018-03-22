@@ -1,12 +1,24 @@
 #include <vector>
 #include "SFML/Graphics.hpp"
 #include "GameObject.h"
+#include "BaseComponent.h"
+#include "TransformComponent.h"
 
 GameObject::~GameObject()
 {
 	for (unsigned int i = 0; i < Children.size(); i++)
 	{
 		delete Children[i];
+	}
+}
+
+GameObject::GameObject(GameObject * P, std::string N)
+{
+	Parent = P;
+	Name = N;
+	if (Parent != nullptr)
+	{
+		AddComponent(new TransformComponent());
 	}
 }
 
@@ -24,4 +36,9 @@ void GameObject::Update(float msec)
 	{
 		(*i)->Update(msec);
 	}
+}
+
+void GameObject::AddComponent(class BaseComponent * B)
+{
+	{ Components.push_back(B); }
 }

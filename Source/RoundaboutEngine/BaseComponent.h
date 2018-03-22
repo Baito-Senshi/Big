@@ -1,14 +1,9 @@
-#include "GameObject.h"
-#include <SFML\Graphics.hpp>
+#pragma once
 
 class BaseComponent {
-public: 
-	BaseComponent();
-	BaseComponent(GameObject* _Host);
-	~BaseComponent();
-	GameObject* Host;
-	BaseComponent* GetComponent();
-	virtual void AddComponent(BaseComponent host);
-	virtual void RemoveComponent();
-	std::vector<BaseComponent*> comp;
+protected: 
+	class GameObject* Host;
+	virtual BaseComponent* GetComponent() { return this; }
+	void RemoveComponent() { delete this; }
 };
+	
