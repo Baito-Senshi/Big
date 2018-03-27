@@ -1,3 +1,5 @@
+#pragma once
+
 class RoundaboutEngine
 {
 protected:
@@ -19,7 +21,9 @@ public:
 	bool IsExiting();
 	void Start();
 	void Initialize();
-	void GameLoop();
+	void GameLoop(sf::Time DeltaTime);
+
+	class Scene* MainScene;
 
 	typedef unsigned __int64 DWORDLONG;
 	typedef unsigned long DWORD;

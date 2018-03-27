@@ -1,9 +1,2 @@
 ﻿  GameObject.cpp
-  Generating Code...
-  Compiling...
-  TransformComponent.cpp
-  BaseComponent.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  RoundaboutEngine.cpp
-  RoundaboutEngine.vcxproj -> C:\Users\Maes-Deux\source\repos\Big\Source\RoundaboutEngine\RoundaboutEngine.vcxproj\..\..\..\Game\Debug-Win32\RoundaboutEngine.exe
+c:\users\maes\source\repos\big\source\roundaboutengine\gameobject.cpp(33): error C2276: '&': illegal operation on bound member function expression
