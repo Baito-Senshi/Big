@@ -1,3 +1,5 @@
+#pragma once
+
 class GameObject {
 public:
 	GameObject() { Parent = nullptr; }
@@ -6,19 +8,20 @@ public:
 	GameObject(GameObject* P, std::string N = "GameObject");
 	
 	void SetParent(GameObject* P) { Parent = P; };
+	GameObject* GetParent() { if (Parent != nullptr) { return Parent; } }
 	void SetName(std::string N) { Name = N; }
+	std::string GetName() { return Name; }
 	void AddChild(GameObject* S);
-	void Update(float DeltaTime);
+	void Update(sf::Time DeltaTime);
 
 	void AddComponent(class BaseComponent* B);
+	//class BaseComponent* GetComponent(std::string ComponentName);
 	//void RemoveComponent() { delete this; }
 
 	GameObject* Parent;	
 	class TransformComponent* T;
 	
 	std::string Name;
-	sf::Transform WorldTransform;
-	sf::Transform LocalTransform;
 	std::vector<GameObject*> Children;
 	std::vector<class BaseComponent*> Components;
 };

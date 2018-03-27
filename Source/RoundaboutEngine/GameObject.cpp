@@ -28,10 +28,11 @@ void GameObject::AddChild(GameObject* S)
 	S->Parent = this;
 }
 
-void GameObject::Update(float msec)
+void GameObject::Update(sf::Time msec)
 {
-	if (Parent) { WorldTransform = Parent->WorldTransform * LocalTransform; }
-	else { WorldTransform = LocalTransform; }
+	if (this->Parent) { T->WorldTransform = &GameObject::T->GetTransform * T->LocalTransform; }
+
+	else { T->WorldTransform = T->LocalTransform; }
 	for (std::vector<GameObject*>::iterator i = Children.begin(); i != Children.end(); ++i)
 	{
 		(*i)->Update(msec);

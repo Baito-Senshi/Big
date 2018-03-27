@@ -17,12 +17,14 @@ void RoundaboutEngine::Start(void)
 		_gameState = Initialized;
 	}
 
-	Scene MainScene;
-	MainScene.AddChild();
+
+	sf::Clock Clock;
 
 	while (_gameState)
 	{
+		sf::Time DeltaTime = Clock.restart();
 		sf::Event event;
+
 		while (_mainWindow.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
@@ -30,6 +32,8 @@ void RoundaboutEngine::Start(void)
 		}
 		_mainWindow.clear();
 		_mainWindow.display();
+
+		GameLoop(DeltaTime);
 	}
 }
 
@@ -37,6 +41,11 @@ void RoundaboutEngine::Initialize(void)
 {
 	_gameState = Uninitialized;
 	_mainWindow.create(sf::VideoMode(1024, 768, 32), "Roundabout Engine");
+	_mainWindow.setFramerateLimit(60);
+
+	sf::Clock Clock;
+	sf::Time SplashTime = sf::seconds(3.0f);
+	sf::Time SplashDuration = Clock.getElapsedTime();
 
 	SplashScreen Splash;
 	Splash.Show(_mainWindow);
@@ -52,6 +61,7 @@ void RoundaboutEngine::Initialize(void)
 	}
 	else
 	{
+		while (SplashDuration < SplashTime){ SplashDuration = Clock.getElapsedTime(); }
 		_gameState = Initialized;
 		return;
 	}
@@ -62,9 +72,11 @@ bool RoundaboutEngine::IsExiting()
 	return false;
 }
 
-void RoundaboutEngine::GameLoop(void)
+void RoundaboutEngine::GameLoop(sf::Time DeltaTime)
 {
-	return;
+	_gameState = ShowingMenu;
+
+	MainScene->Update(DeltaTime);
 }
 
 bool RoundaboutEngine::CheckStorage(DWORDLONG diskSpaceNeeded)

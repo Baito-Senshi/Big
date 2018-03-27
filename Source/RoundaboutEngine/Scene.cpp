@@ -29,7 +29,7 @@ void Scene::AddChild(GameObject* S)
 	Children.push_back(S);
 }
 
-void Scene::Update(float msec)
+void Scene::Update(sf::Time msec)
 {
 	for (std::vector<GameObject*>::iterator i = Children.begin(); i != Children.end(); ++i)
 	{
