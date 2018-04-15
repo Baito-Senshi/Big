@@ -1,2 +1,2 @@
-﻿  GameObject.cpp
-c:\users\maes\source\repos\big\source\roundaboutengine\gameobject.cpp(33): error C2276: '&': illegal operation on bound member function expression
+﻿  Scene.cpp
+  RoundaboutEngine.vcxproj -> C:\Users\Maes-Deux\source\repos\Big\Source\RoundaboutEngine\RoundaboutEngine.vcxproj\..\..\..\Game\Debug-Win32\RoundaboutEngine.exe

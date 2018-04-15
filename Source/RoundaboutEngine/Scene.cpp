@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 
 Scene::~Scene()
 {
@@ -31,8 +32,12 @@ void Scene::AddChild(GameObject* S)
 
 void Scene::Update(sf::Time msec)
 {
-	for (std::vector<GameObject*>::iterator i = Children.begin(); i != Children.end(); ++i)
+	std::cout << "Hello" << std::endl;
+	if (Children.size() > 0)
 	{
-		(*i)->Update(msec);
+		for (std::vector<GameObject*>::iterator i = Children.begin(); i != Children.end(); ++i)
+		{
+			//(*i)->Update(msec);
+		}
 	}
 }

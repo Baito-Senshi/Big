@@ -21,6 +21,8 @@ public:
 	GameObject* Parent;	
 	class TransformComponent* T;
 	
+	sf::Transform LocalTransform;
+	sf::Transform WorldTransform;
 	std::string Name;
 	std::vector<GameObject*> Children;
 	std::vector<class BaseComponent*> Components;
