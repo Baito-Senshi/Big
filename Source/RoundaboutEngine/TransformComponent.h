@@ -8,7 +8,7 @@ public:
 	TransformComponent() {}
 	~TransformComponent() { delete this; }
 
-	void SetTransform(const sf::Transform T) { LocalTransform = T; }
+	void SetTransform(sf::Transform T) { LocalTransform = T; }
 	sf::Transform GetTransform() { return LocalTransform; };
 	sf::Transform GetWorldTransform() { return WorldTransform; }
 

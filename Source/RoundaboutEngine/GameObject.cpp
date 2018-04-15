@@ -18,7 +18,7 @@ GameObject::GameObject(GameObject * P, std::string N)
 	Name = N;
 	if (Parent != nullptr)
 	{
-		AddComponent(new TransformComponent());
+		AddComponent(T);
 	}
 }
 
@@ -30,12 +30,15 @@ void GameObject::AddChild(GameObject* S)
 
 void GameObject::Update(sf::Time msec)
 {
-	if (this->Parent) { T->WorldTransform = &GameObject::T->GetTransform * T->LocalTransform; }
+	if (Parent) { WorldTransform = Parent->WorldTransform * LocalTransform; }
 
-	else { T->WorldTransform = T->LocalTransform; }
-	for (std::vector<GameObject*>::iterator i = Children.begin(); i != Children.end(); ++i)
+	else { WorldTransform = LocalTransform; }
+	if (Children.size() > 0)
 	{
-		(*i)->Update(msec);
+		for (std::vector<GameObject*>::iterator i = Children.begin(); i != Children.end(); ++i)
+		{
+			(*i)->Update(msec);
+		}
 	}
 }
 
