@@ -2,16 +2,15 @@
 
 class Scene {
 public:
-	Scene() {}
+	Scene();
+	Scene(std::string Name);
 	~Scene(void);
 
-	Scene(std::string Name);
-
 	void SetName(std::string Name) { SceneName = Name; }
-	void AddChild();
 	void AddChild(class GameObject* G);
-	void Update(sf::Time DeltaTime);
+	virtual void Update(sf::Time DeltaTime);
 
+protected:
 	std::string SceneName;
 	std::vector<class GameObject*> Children;
 };

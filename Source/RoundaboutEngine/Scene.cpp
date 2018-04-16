@@ -6,6 +6,15 @@
 #include <string>
 #include <iostream>
 
+Scene::Scene()
+{
+}
+
+Scene::Scene(std::string Name = "Scene")
+{
+	SceneName = Name;
+}
+
 Scene::~Scene()
 {
 	for (unsigned int i = 0; i < Children.size(); i++)
@@ -14,30 +23,15 @@ Scene::~Scene()
 	}
 }
 
-Scene::Scene(std::string Name = "Scene")
-{
-	SceneName = Name;
-}
-
-void Scene::AddChild()
-{
-	GameObject* NewGameObject;
-	Children.push_back(NewGameObject);
-}
-
 void Scene::AddChild(GameObject* S)
 {
 	Children.push_back(S);
 }
 
-void Scene::Update(sf::Time msec)
+void Scene::Update(sf::Time DeltaTime)
 {
-	std::cout << "Hello" << std::endl;
-	if (Children.size() > 0)
+	for (std::vector<GameObject*>::iterator i = Children.begin(); i != Children.end(); ++i)
 	{
-		for (std::vector<GameObject*>::iterator i = Children.begin(); i != Children.end(); ++i)
-		{
-			//(*i)->Update(msec);
-		}
+		(*i)->Update(DeltaTime);
 	}
 }

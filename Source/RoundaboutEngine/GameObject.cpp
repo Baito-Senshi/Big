@@ -1,18 +1,13 @@
-#include <vector>
 #include "SFML/Graphics.hpp"
 #include "GameObject.h"
 #include "BaseComponent.h"
 #include "TransformComponent.h"
 
-GameObject::~GameObject()
-{
-	for (unsigned int i = 0; i < Children.size(); i++)
-	{
-		delete Children[i];
-	}
-}
+#include <vector>
+#include <string>
+#include <iostream>
 
-GameObject::GameObject(GameObject * P, std::string N)
+GameObject::GameObject(GameObject* P, std::string N)
 {
 	Parent = P;
 	Name = N;
@@ -22,27 +17,39 @@ GameObject::GameObject(GameObject * P, std::string N)
 	}
 }
 
-void GameObject::AddChild(GameObject* S)
+GameObject::GameObject(std::string N)
 {
-	Children.push_back(S);
-	S->Parent = this;
+	Name = N;
+	if (Parent != nullptr)
+	{
+		AddComponent(T);
+	}
 }
 
-void GameObject::Update(sf::Time msec)
+void GameObject::AddChild(GameObject* Child)
 {
-	if (Parent) { WorldTransform = Parent->WorldTransform * LocalTransform; }
+	Children.push_back(Child);
+	Child->Parent = this;
+}
 
-	else { WorldTransform = LocalTransform; }
-	if (Children.size() > 0)
+void GameObject::Update(sf::Time DeltaTime)
+{
+	for (std::vector<GameObject*>::iterator i = Children.begin(); i != Children.end(); ++i)
 	{
-		for (std::vector<GameObject*>::iterator i = Children.begin(); i != Children.end(); ++i)
-		{
-			(*i)->Update(msec);
-		}
+		std::cout << "Hello" << std::endl;
+		(*i)->Update(DeltaTime);
 	}
 }
 
 void GameObject::AddComponent(class BaseComponent * B)
 {
 	{ Components.push_back(B); }
+}
+
+GameObject::~GameObject()
+{
+	for (unsigned int i = 0; i < Children.size(); i++)
+	{
+		delete Children[i];
+	}
 }

@@ -17,6 +17,15 @@ void RoundaboutEngine::Start(void)
 		_gameState = Initialized;
 	}
 
+	MainScene = new Scene();
+	GameObject* Object = new GameObject("Test");
+	GameObject* Object2 = new GameObject("Child");
+
+	
+
+	Object->AddChild(Object2);
+
+	MainScene->AddChild(Object);
 
 	sf::Clock Clock;
 
