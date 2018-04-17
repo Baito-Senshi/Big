@@ -62,7 +62,8 @@ public class PhysicsEngine : MonoBehaviour
                 {
                     CollisionPair pair = new CollisionPair();
                     CollisionInfo colInfo = new CollisionInfo();
-                    pair.rigidBodyA = bodyA; pair.rigidBodyB = bodyB;
+                    pair.rigidBodyA = bodyA; 
+					pair.rigidBodyB = bodyB;
 
                     Vector2 distance = bodyB.transform.position - bodyA.transform.position;
 
@@ -87,13 +88,21 @@ public class PhysicsEngine : MonoBehaviour
                             {
                                 //Update collision Normal...
                                 gap.Normalize();
-                                gap.x = 0;
-                                Debug.Log("hi");
+								pair.rigidBodyA.currentVelocity = new Vector2 (0, 0);
+								pair.rigidBodyA.obeysGravity = false;
+
+								//pair.rigidBodyB.currentVelocity = new Vector2 (0, 0);
+								//pair.rigidBodyB.obeysGravity = false;
                             }
                             else
                             {
                                 //Update collision Normal...
                                 gap.Normalize();
+								pair.rigidBodyA.currentVelocity = new Vector2 (0, 0);
+								pair.rigidBodyA.obeysGravity = false;
+
+								//pair.rigidBodyB.currentVelocity = new Vector2 (0, 0);
+								//pair.rigidBodyB.obeysGravity = false;
                             }
                             colInfo.penetration = gap.x;
                         }
@@ -103,12 +112,21 @@ public class PhysicsEngine : MonoBehaviour
                             {
                                 //Update collision Normal...
                                 gap.Normalize();
-                                Debug.Log(gap);
+								pair.rigidBodyA.currentVelocity = new Vector2 (0, 0);
+								pair.rigidBodyA.obeysGravity = false;
+
+								//pair.rigidBodyB.currentVelocity = new Vector2 (0, 0);
+								//pair.rigidBodyB.obeysGravity = false;
                             }
                             else
                             {
                                 //Update collision Normal...
                                 gap.Normalize();
+								pair.rigidBodyA.currentVelocity = new Vector2 (0, 0);
+								pair.rigidBodyA.obeysGravity = false;
+
+								//pair.rigidBodyB.currentVelocity = new Vector2 (0, 0);
+								//pair.rigidBodyB.obeysGravity = false;
                             }
                             colInfo.penetration = gap.y;
                         }
@@ -123,6 +141,37 @@ public class PhysicsEngine : MonoBehaviour
             }
         }
     }
+
+
+	/*
+    * ______________ Why do we need this function? 
+    * ______________ Try taking it out and see what happens
+    */
+	void PositionalCorrection(CollisionPair c)
+	{
+		const float percent = 0.2f;
+
+		float invMassA, invMassB;
+		if (c.rigidBodyA.mass == 0)
+			invMassA = 0;
+		else
+			invMassA = 1 / c.rigidBodyA.mass;
+
+		if (c.rigidBodyB.mass == 0)
+			invMassB = 0;
+		else
+			invMassB = 1 / c.rigidBodyB.mass;
+
+		Vector2 correction = ((collisions[c].penetration / (invMassA + invMassB)) * percent) * -collisions[c].collisionNormal;
+
+		Vector2 temp = c.rigidBodyA.transform.position;
+		temp -= invMassA * correction;
+		c.rigidBodyA.transform.position = temp;
+
+		temp = c.rigidBodyB.transform.position;
+		temp += invMassB * correction;
+		c.rigidBodyB.transform.position = temp;
+	}
 
     void ResolveCollisions()
     {
@@ -150,8 +199,11 @@ public class PhysicsEngine : MonoBehaviour
 
             // ... update velocities
             Vector2 tempA = pair.rigidBodyA.transform.position;
+			tempA = pair.rigidBodyA.transform.position;
             tempA -= invMassA * impulse;
             pair.rigidBodyA.transform.position = tempA;
+				
+			pair.rigidBodyA.currentVelocity = -pair.rigidBodyA.currentVelocity;
 
             Vector2 tempB = pair.rigidBodyB.transform.position;
             tempB = pair.rigidBodyB.transform.position;
@@ -160,50 +212,21 @@ public class PhysicsEngine : MonoBehaviour
 
             if (tempA == new Vector2(0, 0))
             {
-                pair.rigidBodyB.currentVelocity = new Vector2(0, 0) * minBounce;
+				pair.rigidBodyB.currentVelocity = pair.rigidBodyB.currentVelocity + impulse * minBounce;
+				//pair.rigidBodyB.obeysGravity = false;
             }
 
             if (tempB == new Vector2(0,0))
             {
-                pair.rigidBodyA.currentVelocity = new Vector2(0,0) * minBounce;
+				pair.rigidBodyA.currentVelocity = new Vector2 (0, 0) + impulse * minBounce;
+				//pair.rigidBodyA.obeysGravity = false;
             }
-
-
+				
             if (Mathf.Abs(collisions[pair].penetration) > 0.01f)
             {
                 PositionalCorrection(pair);
             }
         }
-    }
-
-    /*
-    * ______________ Why do we need this function? 
-    * ______________ Try taking it out and see what happens
-    */
-    void PositionalCorrection(CollisionPair c)
-    {
-        const float percent = 0.2f;
-
-        float invMassA, invMassB;
-        if (c.rigidBodyA.mass == 0)
-            invMassA = 0;
-        else
-            invMassA = 1 / c.rigidBodyA.mass;
-
-        if (c.rigidBodyB.mass == 0)
-            invMassB = 0;
-        else
-            invMassB = 1 / c.rigidBodyB.mass;
-
-        Vector2 correction = ((collisions[c].penetration / (invMassA + invMassB)) * percent) * -collisions[c].collisionNormal;
-
-        Vector2 temp = c.rigidBodyA.transform.position;
-        temp -= invMassA * correction;
-        c.rigidBodyA.transform.position = temp;
-
-        temp = c.rigidBodyB.transform.position;
-        temp += invMassB * correction;
-        c.rigidBodyB.transform.position = temp;
     }
 
     void UpdatePhysics()
