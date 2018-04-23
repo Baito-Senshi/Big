@@ -11,19 +11,18 @@ GameObject::GameObject(GameObject* P, std::string N)
 {
 	Parent = P;
 	Name = N;
-	if (Parent != nullptr)
-	{
-		AddComponent(T);
-	}
+
+	T = new TransformComponent();
+	AddComponent(T);
 }
 
 GameObject::GameObject(std::string N)
 {
 	Name = N;
-	if (Parent != nullptr)
-	{
-		AddComponent(T);
-	}
+	T = new TransformComponent();
+	AddComponent(T);
+	std::cout << "Added2" << std::endl;
+
 }
 
 void GameObject::AddChild(GameObject* Child)
@@ -36,7 +35,11 @@ void GameObject::Update(sf::Time DeltaTime)
 {
 	for (std::vector<GameObject*>::iterator i = Children.begin(); i != Children.end(); ++i)
 	{
-		std::cout << "Hello" << std::endl;
+		(*i)->Update(DeltaTime);
+	}
+
+	for (std::vector<BaseComponent*>::iterator i = Components.begin(); i != Components.end(); ++i)
+	{
 		(*i)->Update(DeltaTime);
 	}
 }

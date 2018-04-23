@@ -1,16 +1,17 @@
 #pragma once
 
 #include "BaseComponent.h"
-#include <SFML\Graphics.hpp>
 
 class TransformComponent : public BaseComponent  {
 public:
-	TransformComponent() {}
+	TransformComponent();
 	~TransformComponent() { delete this; }
 
 	void SetTransform(sf::Transform T) { LocalTransform = T; }
 	sf::Transform GetTransform() { return LocalTransform; };
 	sf::Transform GetWorldTransform() { return WorldTransform; }
+
+	void Update(sf::Time DeltaTime);
 
 	sf::Transform WorldTransform;
 	sf::Transform LocalTransform;

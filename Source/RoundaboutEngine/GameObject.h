@@ -20,9 +20,8 @@ public:
 
 	GameObject* Parent;	
 	class TransformComponent* T;
-	
-	sf::Transform LocalTransform;
-	sf::Transform WorldTransform;
+
+	class TransformComponent* GetTransform() { return T; }
 	std::string Name;
 	std::vector<GameObject*> Children;
 	std::vector<class BaseComponent*> Components;

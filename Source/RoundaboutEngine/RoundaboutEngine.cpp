@@ -6,6 +6,7 @@
 #include "SplashScreen.h"
 #include "Scene.h"
 #include "GameObject.h"
+#include "TransformComponent.h"
 
 
 #include <iostream>
@@ -21,7 +22,7 @@ void RoundaboutEngine::Start(void)
 	GameObject* Object = new GameObject("Test");
 	GameObject* Object2 = new GameObject("Child");
 
-	
+	//std::cout << Object->GetTransform()->GetTransform().getMatrix() << std::endl;
 
 	Object->AddChild(Object2);
 
